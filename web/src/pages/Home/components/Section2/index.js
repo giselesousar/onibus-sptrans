@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Row, Col, Container, Button } from 'react-bootstrap';
+import { Row, Col, Container, Button, Card } from 'react-bootstrap';
 
 import MapComponent from './components/Map';
 import Linhas from './components/Linhas';
 import Search from './components/Search';
 import Contador from './components/Contador';
 import VeiculoDetails from './components/VeiculoDetails';
+import TooltipComponent from './components/Tooltip';
 
 export default function Section2(props) {
 
@@ -65,16 +66,22 @@ export default function Section2(props) {
     }, [])
 
     return (
-        <div className="section-2" style={{ height: "100vh" }}>
+        <Container className="section-2" style={{ marginTop: 30, marginBottom: 30 }}>
             <Row style={{
+                display: "flex",
+                justifyContent: "center"
             }}>
-                <Col md={4} style={{
+                <h1>Ver no mapa</h1>
+            </Row>
+            <Row style={{
+                marginTop: 30,
+            }}>
+                <Col md={5} xs={12} style={{
                     justifyContent: "center",
                     marginTop: 20
                 }}>
                     <div className="container-atualizacao" style={{
-                        borderRadius: "8px",
-                        border: "1px solid green"
+                   
                     }}>
                         <h3>Última atualização: {atualizacaoHora}</h3>
                     </div>
@@ -85,14 +92,28 @@ export default function Section2(props) {
                             setAtualizar={setAtualizar}
                         />
                     }
+                    <Card body>
+                    <h4>Mostrar ônibus no mapa</h4>
                     <Search veiculos={veiculos} setVeiculoBuscado={setVeiculoBuscado} atualizar={atualizar} />
+                    <h4>Mostrar todas as paradas</h4>
+
+                    <div style={{
+                        display: "flex",
+                        direction: "row"
+                    }}>
                     <Button variant="outline-success" onClick={() => {
-                        setMostrarParadas(mostrarParadas ? false : true);
+                        setMostrarParadas(!mostrarParadas);
                     }}>{mostrarParadas ? "Ocutar paradas" : "Mostrar paradas"}</Button>
-                    {/**veiculoBuscado && <Linhas veiculoBuscado={veiculoBuscado} />*/}
+                    <TooltipComponent content="Clicando no ícone da parada no mapa aparecerá o nome da parada, se houver."/>
+                    </div>
+                    </Card>
                     {veiculoBuscado && <VeiculoDetails veiculo={veiculoBuscado}/>}
+
                 </Col>
-                <Col md={8}>
+                <Col md={7} xs={12} style={{
+                    justifyContent: "center",
+                    display: "flex"
+                }}>
                     <MapComponent
                         paradas={paradas}
                         mostrarParadas={mostrarParadas}
@@ -100,6 +121,6 @@ export default function Section2(props) {
                     />
                 </Col>
             </Row>
-        </div>
+        </Container>
     )
 }
