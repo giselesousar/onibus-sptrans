@@ -3,7 +3,7 @@ import {Form, FormControl, Button, Card} from 'react-bootstrap';
 import {useHistory} from 'react-router-dom';
 import api from '../../../../../../services/api';
 
-export default function CardComponent(props) {
+export default function CardSearch(props) {
 
     const { title, placeholder, path, linhas, paradas } = props;
 
@@ -11,8 +11,14 @@ export default function CardComponent(props) {
 
     const [value, setValue] = useState('');
 
-    function buscarLinhas(){
-        api.get(`Linha/Buscar?termosBusca=${value}`)
+    function buscar(){
+        api.get(
+            linhas ?
+            `Linha/Buscar?termosBusca=${value}`
+            : paradas ? 
+            `Parada/Buscar?termosBusca=${value}`
+            : ''
+            )
             .then(response => {
                 if(response.data == []){
                     alert("Informe um valor válido!")
@@ -29,13 +35,12 @@ export default function CardComponent(props) {
 
             })
     }
+    
 
     function onSubmit(e){
         e.preventDefault()
-
-        if(linhas){
-            buscarLinhas();
-        }
+        buscar();
+        setValue('');
 
     }
 

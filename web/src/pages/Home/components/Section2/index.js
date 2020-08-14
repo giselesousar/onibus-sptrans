@@ -3,23 +3,24 @@ import { Row, Col, Container, Button, Card } from 'react-bootstrap';
 
 import MapComponent from './components/Map';
 import Linhas from './components/Linhas';
-import Search from './components/Search';
+import SearchVeiculo from './components/SearchVeiculo';
+import SearchParada from './components/SearchParada';
 import Contador from './components/Contador';
 import VeiculoDetails from './components/VeiculoDetails';
+import ParadaDetails from './components/ParadaDetails';
 import TooltipComponent from './components/Tooltip';
 
 export default function Section2(props) {
 
     const { api } = props;
 
-    const [mostrarParadas, setMostrarParadas] = useState(false);
     const [veiculos, setVeiculos] = useState([]);
     const [atualizacaoHora, setAtualizacaoHora] = useState(null);
     const [veiculoBuscado, setVeiculoBuscado] = useState(null);
     const [atualizar, setAtualizar] = useState(false);
 
 
-    const [paradas, setParadas] = useState([]);
+    const [parada, setParada] = useState(null);
 
     function atualizarDados() {
         loadVeiculos();
@@ -38,28 +39,11 @@ export default function Section2(props) {
             .then(response => {
                 setAtualizacaoHora(response.data.hr);
                 setVeiculos(response.data.l);
-                console.log(response.data.hr);
             })
             .catch(function (error) {
                 console.log("erro")
             })
     }
-
-    function loadParadas() {
-
-        api.get('Parada/Buscar?termosBusca=*')
-            .then(response => {
-                setParadas(response.data);
-            })
-            .catch(function (error) {
-                //error
-            })
-    }
-
-
-    useEffect(() => {
-        loadParadas();
-    }, [])
 
     useEffect(() => {
         loadVeiculos();
@@ -94,29 +78,28 @@ export default function Section2(props) {
                     }
                     <Card body>
                     <h4>Mostrar ônibus no mapa</h4>
-                    <Search veiculos={veiculos} setVeiculoBuscado={setVeiculoBuscado} atualizar={atualizar} />
-                    <h4>Mostrar todas as paradas</h4>
-
-                    <div style={{
-                        display: "flex",
-                        direction: "row"
-                    }}>
-                    <Button variant="outline-success" onClick={() => {
-                        setMostrarParadas(!mostrarParadas);
-                    }}>{mostrarParadas ? "Ocutar paradas" : "Mostrar paradas"}</Button>
-                    <TooltipComponent content="Clicando no ícone da parada no mapa aparecerá o nome da parada, se houver."/>
-                    </div>
+                    <SearchVeiculo veiculos={veiculos} setVeiculoBuscado={setVeiculoBuscado} atualizar={atualizar} />
+                    {veiculoBuscado && 
+                        <>
+                            <VeiculoDetails veiculo={veiculoBuscado}/>
+                            <SearchParada
+                                setParada={setParada}
+                                veiculo={veiculoBuscado}
+                            />
+                            {
+                                parada && 
+                                <ParadaDetails parada={parada}/>
+                            }
+                        </>
+                    }
                     </Card>
-                    {veiculoBuscado && <VeiculoDetails veiculo={veiculoBuscado}/>}
-
                 </Col>
                 <Col md={7} xs={12} style={{
                     justifyContent: "center",
                     display: "flex"
                 }}>
                     <MapComponent
-                        paradas={paradas}
-                        mostrarParadas={mostrarParadas}
+                        parada={parada ? parada.p : null}
                         veiculoBuscado={veiculoBuscado}
                     />
                 </Col>

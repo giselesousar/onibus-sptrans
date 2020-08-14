@@ -1,23 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { Button, Form, FormControl } from 'react-bootstrap';
+import React, {useState} from 'react';
+import {Form, FormControl, Button} from 'react-bootstrap';
+import api from '../../../../../../services/api'
 
-export default function Search(props) {
-    const { veiculos, setVeiculoBuscado, atualizar } = props;
+export default function SearchParada(props){
+    const { setParada, veiculo} = props;
     const [value, setValue] = useState('');
 
     function onSubmit(e){
         e.preventDefault();
-        var flag = 0;
-        veiculos.forEach(v => {
-            console.log(v.c)
-            if ((v.c).toLowerCase() == value) {
-                setVeiculoBuscado(v);
-                flag = 1;
-            }
-        })
-        if(!flag){
-            setVeiculoBuscado(null);
-        }
+        api.get(`Previsao?codigoParada=${value}&codigoLinha=${veiculo.cl}`)
+            .then(response => {
+                setParada(response.data);
+                console.log(`Previsao?codigoParada=${value}&codigoLinha=${veiculo.cl}`)
+            })
         setValue('');
     }
 

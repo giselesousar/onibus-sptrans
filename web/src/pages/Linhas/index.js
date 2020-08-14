@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
-import { Container, Card, ListGroup, Form, FormControl, Button } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Container, Card, Accordion,ListGroup, Form, FormControl, Button } from 'react-bootstrap';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa'
 import { useHistory } from 'react-router-dom';
+import api from '../../services/api';
 
 export default function Linhas(props) {
 
@@ -9,17 +10,29 @@ export default function Linhas(props) {
     const history = useHistory();
 
     const [filtro, setFiltro] = useState(busca);
+    const [paradas, setParadas] = useState([]);
     const [value, setValue] = useState('');
 
     function handleGoBack() {
         history.goBack();
     }
 
-    function onChange(e){
+    function onClickLinha(codigo){
+        setParadas([]);
+        api.get(`Parada/BuscarParadasPorLinha?codigoLinha=${codigo}`)
+            .then(response => {
+                setParadas(response.data);
+            })
+            .catch(function(error){
+                //erro
+            })
+    }
+
+    function onChange(e) {
         setValue(e.target.value);
-        if(e.target.value.length > 0 ){
-            setFiltro(busca.filter(item => { return item.lt.match(e.target.value)}))
-        }else{
+        if (e.target.value.length > 0) {
+            setFiltro(busca.filter(item => { return item.lt.match(e.target.value) }))
+        } else {
             setFiltro(busca);
         }
     }
@@ -51,12 +64,12 @@ export default function Linhas(props) {
                         <h3>Buscar por Linhas</h3>
                         <div></div>
                     </Container>
-                    </Card.Title>
+                </Card.Title>
 
-                    <Container 
-                        style={{                
-                            display: "flex",
-                            justifyContent: "center"
+                <Container
+                    style={{
+                        display: "flex",
+                        justifyContent: "center"
                     }}>
                     <Card style={{ width: '80%' }}>
                         <Card.Header>
@@ -70,26 +83,60 @@ export default function Linhas(props) {
                                 />
                             </Form>
                         </Card.Header>
-                        <ListGroup variant="flush">
+                        <Accordion >
+
                             {
                                 filtro.map(item => {
-                                    return <ListGroup.Item key={item.cl}>
-                                                {item.lt} <br/>
-                                                {item.sl === 1 ? 
-                                                <p>
-                                                    {item.tp}<FaArrowRight color="green"/>{item.ts}
-                                                </p> :
-                                                 <p>
-                                                 {item.ts}<FaArrowRight color="green"/>{item.tp}
-                                             </p> 
+                                    return (
+
+                                        <Card>
+                                            <Card.Header>
+                                                <Accordion.Toggle 
+                                                    as={Button} 
+                                                    variant="link" 
+                                                    eventKey={item.cl}
+                                                    onClick={() => onClickLinha(item.cl)}
+                                                    style={{
+                                                        width: "100%",
+                                                        textAlign: "left",
+                                                        textDecoration: "none"
+                                                    }}
+                                                >
+                                                        {item.lt} <br />
+                                                        {item.sl === 1 ?
+                                                            <p>
+                                                                {item.tp} <FaArrowRight color="green" /> {item.ts}
+                                                            </p> :
+                                                            <p>
+                                                                {item.ts} <FaArrowRight color="green" /> {item.tp}
+                                                            </p>
+                                                            }
+                                                </Accordion.Toggle>
+                                            </Card.Header>
+                                            <Accordion.Collapse eventKey={item.cl}>
+                                            <ListGroup>
+                                                {paradas.length > 0 && 
+                                                    <Card.Body>
+                                                        {paradas.map(parada => {
+                                                            return(
+                                                                <ListGroup.Item>
+                                                                    {parada.np}
+                                                                </ListGroup.Item>
+                                                            )
+                                                        })}
+                                                    </Card.Body>
                                                 }
-                                            </ListGroup.Item>
+                                            </ListGroup>
+                                            </Accordion.Collapse>
+                                        </Card>
+                                    )
+
                                 })
                             }
-                        </ListGroup>
-                        
+                        </Accordion>
+
                     </Card>
-                    </Container>
+                </Container>
 
 
             </Card>

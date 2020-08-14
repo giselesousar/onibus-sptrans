@@ -11,7 +11,7 @@ function App() {
   useEffect(() => {
     api.post(`Login/Autenticar?token=${process.env.TOKEN}`)
       .then(response => {
-          setEstaAutenticado(response.data == true ? true : false);
+          setEstaAutenticado(response.data);
       })
   }, [])
 

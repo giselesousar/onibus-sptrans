@@ -1,7 +1,9 @@
 import React from 'react';
 import {Container, Card, Form, FormControl, Button} from 'react-bootstrap';
 import JumbotronComponent from './components/Jumbotron';
-import CardComponent from './components/Card';
+import CardSearch from './components/CardSearch';
+import CardDropdown from './components/CardDropdown';
+
 export default function Section1() {
     return(
         <div style={{
@@ -18,23 +20,21 @@ export default function Section1() {
                     justifyContent: "space-between",
                     
                 }}>
-                <CardComponent
+                <CardSearch
                     title="Buscar por linhas"
                     placeholder="Buscar linha"
                     path="/linhas"
                     linhas={true}
                 />
-                <CardComponent
-                    title="Buscar por corredores"
-                    placeholder="Buscar corredor"
-                    path="/corredores"
-                    corredores={true}
-                />
-                <CardComponent
+                <CardSearch
                     title="Buscar por paradas"
                     placeholder="Buscar parada"
                     path="/paradas"
                     paradas={true}
+                />
+                <CardDropdown
+                    title="Buscar por corredores"
+                    path="/corredores"
                 />
                 </div>
             </Container>

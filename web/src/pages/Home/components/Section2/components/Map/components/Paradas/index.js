@@ -4,19 +4,17 @@ import {pointerBusIcon} from '../Icons'
 
 
 export default function Paradas(props){
-    const { paradas } = props;
+    const { parada } = props;
 
     return(
         <>
-            {paradas.map(parada => {
-                return (
-                    <Marker key={parada.cp} position={[parada.py, parada.px]} icon={pointerBusIcon}>
+          {parada && <Marker key={parada.cp} position={[parada.py, parada.px]} icon={pointerBusIcon}>
                         <Popup>
                             {parada.np}
                         </Popup>
                     </Marker>
-                )
-            })}
+           }  
+                    
         </>
     )
 }
