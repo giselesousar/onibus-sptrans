@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Detail from '../../layouts/Detail';
 import { Container, Card, Accordion,ListGroup, Form, FormControl, Button } from 'react-bootstrap';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa'
 import { useHistory } from 'react-router-dom';
@@ -33,40 +34,13 @@ export default function Corredores(props) {
 
 
     return (
-        <Container style={{
-            display: "flex",
-            justifyContent: "center"
-        }}>
-            <Card body style={{
-                width: "80%",
-                minHeight: "80vh",
-                marginTop: 30,
-                marginBottom: 30,
-
-            }}>
-                <Card.Title>
-                    <Container style={{
-                        display: "flex",
-                        justifyContent: "space-between"
-                    }}>
-                        <div style={{
-                            cursor: "pointer"
-                        }}
-                            onClick={handleGoBack}
-                        >
-                            <FaArrowLeft />
-                        </div>
-                        <h3>Buscar por Corredores</h3>
-                        <div></div>
-                    </Container>
-                </Card.Title>
-
+        <Detail title="Paradas por corredor">
                 <Container
                     style={{
                         display: "flex",
                         justifyContent: "center"
                     }}>
-                    <Card style={{ width: '80%' }}>
+                    <Card>
                         <Card.Header>
                             <Form inline >
                                 <FormControl
@@ -81,14 +55,14 @@ export default function Corredores(props) {
                         {paradas.map(parada => {
                             return(
                                 <ListGroup.Item key={parada.cp}>
-                                    {parada.np}
+                                    <strong> {parada.np} </strong><br/>
+                                        {parada.ed}
                                 </ListGroup.Item>
                             )
                         })}
                     </ListGroup>
                     </Card>
                 </Container>
-            </Card>
-        </Container>
+            </Detail>
     )
 }
