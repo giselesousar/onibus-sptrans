@@ -41,9 +41,7 @@ export default function BuscarOnibus(props) {
             <Row style={{
                 justifyContent: "center",
             }}>
-                <div className="container-atualizacao">
-                    {veiculoBuscado.linha && <h3>Última atualização: {veiculoBuscado.veiculos.hr}</h3>}
-                </div>
+              
                 <Card style={{
                     width: "100%"
                 }} body>
@@ -55,6 +53,7 @@ export default function BuscarOnibus(props) {
                         <>
                             <VeiculoDetails
                                 linha={veiculoBuscado.linha}
+                                veiculoBuscado={veiculoBuscado}
                                 options={<div style={{
                                     display: "flex",
                                     direction: "row"

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Detail from '../../layouts/Detail';
-import { Container, Card, Accordion,ListGroup, Form, FormControl, Button } from 'react-bootstrap';
+import { Container, Card, Col,Accordion,ListGroup, Form, FormControl, Button } from 'react-bootstrap';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa'
 import { useHistory } from 'react-router-dom';
 
@@ -35,6 +35,7 @@ export default function Paradas(props) {
                         display: "flex",
                         justifyContent: "center"
                     }}>
+                <Col>
                     <Card>
                         <Card.Header>
                             <Form inline >
@@ -63,6 +64,7 @@ export default function Paradas(props) {
                         </ListGroup>
 
                     </Card>
+                </Col>
                 </Container>
 
                 </Detail>

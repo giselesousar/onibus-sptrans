@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import api from '../../../../../../../../services/api';
 
 export default function VeiculoDetails(props) {
-    const { linha, options } = props;
+    const { linha, options, veiculoBuscado } = props;
 
     const [infos, setInfos] = useState(null);
 
@@ -15,7 +15,7 @@ export default function VeiculoDetails(props) {
                          }
                     });
                })
-    }, [])
+    }, [veiculoBuscado])
 
     return (
       <div style={{
@@ -26,7 +26,7 @@ export default function VeiculoDetails(props) {
                 direction: "row",
                 justifyContent: "space-between"
            }}>
-           <h4>Informações: </h4>
+           <h4>Informações:</h4>
            {options}
            </div>
            <hr/>
@@ -60,6 +60,7 @@ export default function VeiculoDetails(props) {
                     {infos.qv}
                     <br/>
                     <hr/>
+                    <h6>Última atualização: {veiculoBuscado.veiculos.hr}</h6>
                </>
                }
        </div>

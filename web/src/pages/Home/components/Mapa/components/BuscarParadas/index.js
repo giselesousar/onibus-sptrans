@@ -23,7 +23,7 @@ export default function BuscarParadas(props) {
                     />
                     
                 </Card>
-                </Row>
+        </Row>
             <Row style={{
                 justifyContent: "center",
                 display: "flex",
