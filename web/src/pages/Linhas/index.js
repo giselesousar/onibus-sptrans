@@ -17,9 +17,9 @@ export default function Linhas(props) {
 
 
     function onClickLinha(codigo) {
-        setLoading(true);
         setParadas([]);
         if(mostrarParadas){
+        setLoading(true);
         api.get(`Parada/BuscarParadasPorLinha?codigoLinha=${codigo}`)
             .then(response => {
                 setParadas(response.data);
@@ -91,13 +91,7 @@ export default function Linhas(props) {
                                     </div>
                                     </Accordion.Toggle>
                                 <Accordion.Collapse eventKey={item.cl}>
-                                    {loading ?
-                                    <Container style={{
-                                        minHeight: 20
-                                    }}>
-                                     <Spinner animation="border" variant="success"/> 
-                                     </Container>
-                                     :
+                                    
                                     <ListGroup>
                                         {paradas.length > 0 &&
                                             <Card.Body>
@@ -112,7 +106,6 @@ export default function Linhas(props) {
                                             </Card.Body>
                                         }
                                     </ListGroup>
-                                    }
                                 </Accordion.Collapse>
                             </Card>
                         )
