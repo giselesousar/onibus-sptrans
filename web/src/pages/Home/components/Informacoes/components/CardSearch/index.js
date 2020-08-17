@@ -21,15 +21,16 @@ export default function CardSearch(props) {
             : ''
             )
             .then(response => {
-                if(response.data == []){
-                    alert("Informe um valor válido!")
-                }else{
+                if(response.data.length > 0 ){
                     history.push({
                         pathname: path,
                         state : {
                             busca: response.data
                         }
                     });
+                }else{
+                    alert("Nenhuma informação encontrada!");
+                    return;
                 }
             })
             .catch(function(error) {
@@ -40,9 +41,6 @@ export default function CardSearch(props) {
 
     function onSubmit(e){
         e.preventDefault()
-        if(value === ""){
-            return;
-        }
         buscar();
         setValue('');
 
@@ -64,7 +62,7 @@ export default function CardSearch(props) {
                         setValue(e.target.value)
                     }}
                 />
-                <Button variant="outline-success" type="submit">Buscar</Button>
+                <Button variant="outline-success" type="submit" disabled={value===""}>Buscar</Button>
             </Form>
         </Card>
     )

@@ -28,11 +28,16 @@ export default function BuscarOnibus(props) {
                     linha: veiculoBuscado.linha
                 })
             })
+            .catch(function(error){
+            })
     }
 
 
     function handleDelete() {
-        setVeiculoBuscado(null);
+        setVeiculoBuscado({
+            veiculos: null,
+            linha: null
+        });
         setAtualizar(false);
     }
 
@@ -45,7 +50,7 @@ export default function BuscarOnibus(props) {
                 <Card style={{
                     width: "100%"
                 }} body>
-                    <h4>Mostrar veículos no mapa <TooltipComponent content="Informe o código da linha para vizualizar a posição dos veículos dessa linha no mapa" /></h4>
+                    <h4>Mostrar ônibus no mapa <TooltipComponent content="Informe o código da linha para vizualizar a posição dos veículos dessa linha no mapa" /></h4>
                     <SearchVeiculo
                         setVeiculoBuscado={setVeiculoBuscado}
                     />

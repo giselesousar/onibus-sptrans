@@ -13,10 +13,17 @@ export default function SearchVeiculo(props) {
         }
         api.get(`Posicao/Linha?codigoLinha=${value}`)
             .then(response => {
-                setVeiculoBuscado({
-                    veiculos: response.data,
-                    linha: value
-                })
+                if(response.data.vs.length > 0){
+                    setVeiculoBuscado({
+                        veiculos: response.data,
+                        linha: value
+                    })
+                }else{
+                    alert("Nenhum veículo encontrado!")
+                }
+            })
+            .catch(function(error){
+                alert(error.message)
             })
         setValue('');
     }
@@ -31,7 +38,7 @@ export default function SearchVeiculo(props) {
                     value={value}
                     onChange={(e) => {setValue(e.target.value)}}
                 />
-                <Button variant="outline-success" type="submit">Buscar</Button>
+                <Button variant="outline-success" type="submit" disabled={value===""}>Buscar</Button>
             </Form>
         </>
     )

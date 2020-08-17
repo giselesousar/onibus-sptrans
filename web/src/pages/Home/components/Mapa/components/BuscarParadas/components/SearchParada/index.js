@@ -12,9 +12,6 @@ export default function SearchParada(props){
 
     function onSubmit(e){
         e.preventDefault();
-        if(value === ""){
-            return;
-        }
         if(exibirFiltros){
 
         api.get(
@@ -23,7 +20,12 @@ export default function SearchParada(props){
             :
             `Parada/BuscarParadasPorCorredor?codigoCorredor=${value}`
         ).then(response => {
-            setParadas(response.data);
+            if(response.data.length > 0 ){
+                setParadas(response.data);
+            }else{
+                alert("Nenhuma informação encontrada!");
+                return;
+            }
         }).catch(function(error){
             //error
         })
@@ -31,7 +33,12 @@ export default function SearchParada(props){
     }else{
         api.get(`Parada/Buscar?termosBusca=${value}`)
             .then(response => {
-                setParadas(response.data);
+                if(response.data.length > 0 ){
+                    setParadas(response.data);
+                }else{
+                    alert("Nenhuma informação encontrada!");
+                    return;
+                }
             })
             .catch(function(error){
                 //error
@@ -61,11 +68,11 @@ export default function SearchParada(props){
                     <option value="corredor">Corredores</option>
                     </Form.Control>
                 }
-                <Button variant="outline-success" type="submit">Search</Button>
+                <Button variant="outline-success" type="submit" disabled={value===""}>Buscar</Button>
                
                 <Button variant="outline-success" onClick={() => {
                     setExibirFiltros(!exibirFiltros);
-                }} >{exibirFiltros ?<FaMinus/> : <FaPlus/> } filtro</Button>
+                }} >{exibirFiltros ?<FaMinus/> : <FaPlus/> } Filtrar</Button>
             </Form> 
         </>
     )

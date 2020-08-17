@@ -33,7 +33,7 @@ export default function Detail(props) {
                         >
                             <FaArrowLeft />
                         </div>
-                        <h3 className="title">{title}</h3>
+                        <p className="h2" style={{textAlign:"center"}}>{title}</p>
                         <div></div>
                     </Container>
                 </Card.Title>

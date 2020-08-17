@@ -50,6 +50,7 @@ export default function CardDropdown(props) {
                 }}
                 
             >
+                <option value="" hidden>Selecione uma opção</option>
                 {
                     corredores.map(corredor => {
                         return(
@@ -58,7 +59,7 @@ export default function CardDropdown(props) {
                     })
                 }
                 </Form.Control>
-                <Button variant="outline-success" type="submit">Buscar</Button>
+                <Button variant="outline-success" type="submit" disabled={value===""}>Buscar</Button>
             </Form>
         </Card>
     )

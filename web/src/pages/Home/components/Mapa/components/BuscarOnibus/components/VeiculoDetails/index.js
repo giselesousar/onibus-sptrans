@@ -9,11 +9,14 @@ export default function VeiculoDetails(props) {
     useEffect(() => {
          api.get("Posicao")
                .then(response => {
-                    response.data.l.forEach(item => {
-                         if(item.cl == linha){
-                              setInfos(item);
-                         }
-                    });
+                    if(response.data.l){
+                         response.data.l.forEach(item => {
+                              if(item.cl == linha){
+                                   setInfos(item);
+                              }
+                         });
+                    }
+                    
                })
     }, [veiculoBuscado])
 
