@@ -12,13 +12,13 @@ export default function Routes(){
     return(
         <BrowserRouter>
             <Switch>
-                <Route exact path="/" component={Home}/>
-                <Route exact path="/linhas" component={Linhas}/>
-                <Route exact path="/corredores" component={Corredores}/>
-                <Route exact path="/paradas" component={Paradas}/>
-                <Route exact path="/documentacao" component={Documentacao}/>
-                <Route exact path="/not-found" component={NotFound}/>
-                <Redirect to="/not-found" />
+                <Route exact path={process.env.PUBLIC_URL + "/"} component={Home}/>
+                <Route exact path={process.env.PUBLIC_URL + "/linhas"} component={Linhas}/>
+                <Route exact path={process.env.PUBLIC_URL + "/corredores"} component={Corredores}/>
+                <Route exact path={process.env.PUBLIC_URL + "/paradas" }component={Paradas}/>
+                <Route exact path={process.env.PUBLIC_URL + "/documentacao"} component={Documentacao}/>
+                <Route exact path={process.env.PUBLIC_URL + "/not-found"} component={NotFound}/>
+                <Redirect to={process.env.PUBLIC_URL + "/not-found"} />
             </Switch>
         </BrowserRouter>
     )
