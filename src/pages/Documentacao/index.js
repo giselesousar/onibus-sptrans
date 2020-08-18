@@ -26,10 +26,10 @@ export default function Documentacao(){
                     <ul style={{
                         margin: 10
                     }}>
-                        <li>Buscar por linhas: informando o número da linha ou o nome do terminal principal ou secundário neste campo, o usuário é direcionado para /linhas.</li>
+                        <li>Buscar por linhas: informando o número da linha ou o nome do terminal principal ou secundário neste campo, o usuário é direcionado para /linhas. Nessa rota, as linhas serão listadas e, ao clicar em uma delas, todas as paradas atendidas por ela são informadas.</li>
                         <Image style={{
                             marginTop: 20,
-                            marginBottom: 20 
+                            marginBottom: 20,
                         }} fluid src={buscarLinhas}/>
                         <li>Buscar por paradas: informando o nome ou endereço da parada, o usuário é direcionado para /paradas, onde terá acesso a uma lista de paradas filtradas pela informação pela qual ele buscou. O usuária ainda será capaz de fazer um filtro na lista gerada digitando o nome ou edereço da parada no campo localizado acima da lista.</li>
                         <Image style={{
@@ -56,7 +56,7 @@ export default function Documentacao(){
                             marginTop: 20,
                             marginBottom: 20 
                         }} fluid src={buscarparada}/>
-                        <li>Calcular previsão de chegada: ao buscar pelo nome ou endereço da parada, as paradas correspondentes a esse filtro serão exibidas no mapa. Clicando no ícone da parada no mapa, será mostrado o nome da parada, se houver. O usuário também pode buscar paradas por linha ou corredor, clicando no botão "filtrar". Ao clicar em ocultar, as paradas serão ocultadas do mapa e clicando novamente serão exibidas. O botão deletar exclui a busca.</li>
+                        <li>Calcular previsão de chegada: aqui, há duas possibilidades: buscar a previsão de chegada de todos os ônibus em uma determinada parada (Selecionar por parada) ou buscar apenas os ônibus de uma determinada linha (Selecionar por parada e linha). Selecionando uma das opções e fornecendo corretamente os dados de busca, o usuário verá no mapa a posição da parada e de cada ônibus no horário da atualização. As posições atualizam a cada 30 segundos ou quando o botão de atualizar é acionado. O botão deletar limpa as informações da busca. Clicando no ícone do ônibus no mapa, serão mostradas as informações daquele ônibus e linha e o horário previsto para chegar na parada.</li>
                         <Image style={{
                             marginTop: 20,
                             marginBottom: 20 
@@ -65,10 +65,15 @@ export default function Documentacao(){
                 <p></p>
                 <h3>Componentização</h3>                
                 <p>A seguir são detalhados os principais componentes da aplicação.</p>
+                <h4>Base</h4>
                 <Image style={{
                             marginTop: 20,
                             marginBottom: 20 
                         }} fluid src={comp1}/>
+                <h4>Pages</h4>
+                <h4>Layouts</h4>
+                <h4>Services</h4>
+                
                 <Image style={{
                             marginTop: 20,
                             marginBottom: 20 

@@ -14,10 +14,11 @@ export default function Informacoes() {
                 <JumbotronComponent/>
          
                 <Row style={{
-                    width: "100%",             
+                    width:"100%"
                 }}>
                 <Col
-                    md={4}
+                    lg={4}
+                    md={12}
                     sm={12}
                 >
                 <CardSearch
@@ -29,7 +30,8 @@ export default function Informacoes() {
                 />
                 </Col>
                 <Col
-                    md={4}
+                    lg={4}
+                    md={12}
                     sm={12}
                 >
                 <CardSearch
@@ -41,7 +43,8 @@ export default function Informacoes() {
                 />
                 </Col>
                 <Col
-                    md={4}
+                    lg={4}
+                    md={12}
                     sm={12}
                 >
                 <CardDropdown

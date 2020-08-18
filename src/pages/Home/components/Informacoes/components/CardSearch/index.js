@@ -56,7 +56,6 @@ export default function CardSearch(props) {
                 <FormControl
                     type="text"
                     placeholder={placeholder}
-                    className="mr-sm-2"
                     value={value}
                     onChange={(e) => {
                         setValue(e.target.value)

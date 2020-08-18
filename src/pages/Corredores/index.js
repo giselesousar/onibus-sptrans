@@ -25,7 +25,7 @@ export default function Corredores(props) {
     function onChange(e){
         setValue(e.target.value);
         if (e.target.value.length > 0) {
-            setFiltro(paradas.filter(item => { return item.np.match(e.target.value) || item.ed.toLowerCase().match(e.target.value.toLowerCase()) || String(item.cp).match(e.target.value) }))
+            setFiltro(paradas.filter(item => { return item.np.toLowerCase().match(e.target.value.toLowerCase()) || item.ed.toLowerCase().match(e.target.value.toLowerCase()) || String(item.cp).match(e.target.value) }))
         } else {
             setFiltro(paradas);
         }
