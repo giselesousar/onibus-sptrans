@@ -33,7 +33,7 @@ export default function Paradas(props) {
                             <Form inline >
                                 <FormControl
                                     type="text"
-                                    placeholder="filtrar"
+                                    placeholder="Filtrar"
                                     className="mr-sm-2"
                                     value={value}
                                     onChange={onChange}

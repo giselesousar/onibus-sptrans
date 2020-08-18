@@ -7,7 +7,7 @@ export const pointerBusIcon = new leaflet.Icon({
     iconRetinaUrl: pointerBus,
     iconAnchor: [5, 55],
     popupAnchor: [10, -44],
-    iconSize: [25, 55],
+    iconSize: [55, 55],
     shadowSize: [68, 95],
     shadowAnchor: [20, 92],
 })

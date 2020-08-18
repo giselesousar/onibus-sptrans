@@ -74,8 +74,6 @@ export default function BuscarOnibus(props) {
                                 </div>
                                 }
                             />
-                            <h4>Calcular previsão de chegada: </h4>
-
                         </>
                     }
                 </Card>
