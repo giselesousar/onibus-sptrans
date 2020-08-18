@@ -66,18 +66,35 @@ export default function Documentacao(){
                 <h3>Componentização</h3>                
                 <p>A seguir são detalhados os principais componentes da aplicação.</p>
                 <h4>Base</h4>
+                <p>
+                    No diretório raiz do projeto, encontra-se o diretporio SCR. Dentro dele, está toda a base da aplicação. O componente "routes.js", renderizado em "app.js" é responsável, com o auxílio da biblioteca react-router-dom, por renderizar o componente correspondente a rota buscada.
+                </p>
+                <p>
+                    Os componentes que compõem as seis rotas da aplicação estão dentro do diretório "pages". 
+                    A imagem abaixo mostra a árvore de componentes básica.
+                </p>
                 <Image style={{
                             marginTop: 20,
                             marginBottom: 20 
                         }} fluid src={comp1}/>
                 <h4>Pages</h4>
-                <h4>Layouts</h4>
-                <h4>Services</h4>
-                
+                <p>
+                    Em cada um dos diretórios dentro de "pages" existe o arquivo "index.js", que exporta o componente correspondente àquela página.
+                </p>
+                <p>
+                    Para fins de organização, o componente "Home" é divido em outros dois: "Informacoes" e "Mapa". O primeiro é composto por um componente "Jumbotron", dois "CardSearch" (responsáveis pela renderização do Card e formulários de busca) e um "CardDropdown" (responsável por renderizar o Card e o formulário com select). O segundo renderiza um conjunto de NavItems e dentro deles os três componentes: BuscarOnibus, BuscarParadas e PrevisaoChegada.
+                </p>
                 <Image style={{
                             marginTop: 20,
                             marginBottom: 20 
                         }} fluid src={comp2}/>
+                <h4>Layouts</h4>
+                <p>
+                    A layout "Main" é usada apenas em "Home" e acrescenda o "Footer" a esse componente. Já a layout "Detail" é usada nas demais páginas e é composta por uma estrutura com um Card e o Footer. O Card contém um botão de voltar à página anterior, um título e o "children" dos componentes.
+                </p>
+                <h4>Services</h4>
+                <p>Dentro desse diretório existe um arquivo "api.js" que exporta uma instancia de "axios" com uma configuração de URL básica, correspondente à API. </p>
+                
                 <h3>Tecnologias</h3>
                 <p>Framework utilizado: <a href="https://reactjs.org/">React</a>.</p>
                 <strong>Bibliotecas: </strong>

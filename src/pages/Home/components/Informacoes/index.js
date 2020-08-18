@@ -17,7 +17,8 @@ export default function Informacoes() {
                     width:"100%"
                 }}>
                 <Col
-                    lg={4}
+                    xl={4}
+                    lg={12}
                     md={12}
                     sm={12}
                 >
@@ -30,7 +31,8 @@ export default function Informacoes() {
                 />
                 </Col>
                 <Col
-                    lg={4}
+                    xl={4}
+                    lg={12}
                     md={12}
                     sm={12}
                 >
@@ -43,7 +45,8 @@ export default function Informacoes() {
                 />
                 </Col>
                 <Col
-                    lg={4}
+                    xl={4}
+                    lg={12}
                     md={12}
                     sm={12}
                 >
