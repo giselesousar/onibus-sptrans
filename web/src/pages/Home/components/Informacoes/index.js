@@ -7,10 +7,7 @@ import './styles.css'
 
 export default function Informacoes() {
     return(
-        <div style={{
-            width: "100%",
-            margin: 0,
-        }} className="section-1">
+        
             <Container style={{
                 marginTop: 30,
             }}>
@@ -54,6 +51,5 @@ export default function Informacoes() {
                 </Col>
                 </Row>
             </Container>
-        </div>
     )
 }

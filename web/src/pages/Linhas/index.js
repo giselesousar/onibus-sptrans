@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Detail from '../../layouts/Detail';
-import { Container, Col, Card, Accordion, ListGroup, Form, FormControl, Button, Spinner } from 'react-bootstrap';
-import { FaArrowLeft, FaArrowRight, FaArrowDown } from 'react-icons/fa'
+import { Container, Card, Accordion, ListGroup, Form, FormControl, Button } from 'react-bootstrap';
+import { FaArrowRight, FaArrowDown } from 'react-icons/fa'
 import api from '../../services/api';
 
 export default function Linhas(props) {
@@ -26,7 +26,7 @@ export default function Linhas(props) {
                 setLoading(false);
             })
             .catch(function (error) {
-                //erro
+                alert(error.message)
             })
         }
     }
@@ -91,7 +91,6 @@ export default function Linhas(props) {
                                     </div>
                                     </Accordion.Toggle>
                                 <Accordion.Collapse eventKey={item.cl}>
-                                    
                                     <ListGroup>
                                         {paradas.length > 0 &&
                                             <Card.Body>

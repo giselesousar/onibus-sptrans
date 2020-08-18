@@ -26,7 +26,7 @@ export default function PrevisaoChegada(){
                 <Card style={{
                     width: "100%"
                 }} body>
-                    <h4>Calcular previsão de chegada <TooltipComponent content="Informe o nome ou endereço da parada (informações totais ou parciais). Ou clique no filtro para buscar paradas por linhas ou corredores." /></h4>
+                    <h4>Calcular previsão de chegada <TooltipComponent content="Para pesquisar por parada, informe o código da parada procurada e todos os ônibus de todas as linhas derão exibidas. Selecionando buscar por parada e linha, você poderá filtrar apenas os ônibus da linha buscada. Informe também o código da linha para isso. Clicando no ícone do ônibus no mapa, é possivel ver as informações e a previsão de chegada na parada informada." /></h4>
                     <Search
                         resultados={resultados}
                         setResultados={setResultados}

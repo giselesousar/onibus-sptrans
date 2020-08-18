@@ -1,21 +1,13 @@
 import React, { useState } from 'react';
 import Detail from '../../layouts/Detail';
-import { Container, Card, Col,Accordion,ListGroup, Form, FormControl, Button } from 'react-bootstrap';
-import { FaArrowLeft, FaArrowRight } from 'react-icons/fa'
-import { useHistory } from 'react-router-dom';
+import { Container, Card, Col, ListGroup, Form, FormControl } from 'react-bootstrap';
 
 export default function Paradas(props) {
 
     const busca = props.location.state.busca;
 
-    const history = useHistory();
-
     const [filtro, setFiltro] = useState(busca);
     const [value, setValue] = useState('');
-
-    function handleGoBack() {
-        history.goBack();
-    }
 
     function onChange(e) {
         setValue(e.target.value);

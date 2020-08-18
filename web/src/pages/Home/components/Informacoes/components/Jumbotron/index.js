@@ -7,10 +7,10 @@ export default function JumbotronComponent(){
     return(
         <Jumbotron>
             <h1>
-                    Desafio Aiko - Frontend
+                    Monitoramento do transporte público - SPTrans
                     </h1>
                 <p>
-                    Aplicação desenvolvida para o desafio técnico do programa de estágio Aiko.
+                    Encontre dados sobre o transporte público da cidade de São Paulo em tempo real!
                     </p>
             <p>
                 <Button variant="outline-success" onClick={() => {

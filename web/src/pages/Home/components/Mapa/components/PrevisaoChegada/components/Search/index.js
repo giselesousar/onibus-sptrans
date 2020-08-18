@@ -91,7 +91,7 @@ export default function Search(props){
                 />
                 }
                 
-                { selectValue !== "" && <Button variant="outline-success" type="submit" disabled={(selectValue === "1" && paradaValue === "") || (selectValue === "1" && paradaValue === "" && linhaValue === "") } >Buscar</Button>}
+                { selectValue !== "" && <Button variant="outline-success" type="submit" disabled={(selectValue === "1" && paradaValue === "") || (selectValue === "2" && paradaValue === "" && linhaValue === "") } >Buscar</Button>}
             </Form>
             </div>
         </>

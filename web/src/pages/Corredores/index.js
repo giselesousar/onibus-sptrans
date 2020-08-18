@@ -1,21 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import Detail from '../../layouts/Detail';
-import { Container, Card, Col,Accordion,ListGroup, Form, FormControl, Button } from 'react-bootstrap';
-import { FaArrowLeft, FaArrowRight } from 'react-icons/fa'
-import { useHistory } from 'react-router-dom';
+import { Container, Card, Col, ListGroup, Form, FormControl } from 'react-bootstrap';
 import api from '../../services/api';
 
 export default function Corredores(props) {
 
     const codigo = props.location.state.codigo;
-    const history = useHistory();
 
     const [paradas, setParadas] = useState([]);
     const [value, setValue] = useState('');
-
-    function handleGoBack() {
-        history.goBack();
-    }
 
     function loadParadas(){
         api.get(`Parada/BuscarParadasPorCorredor?codigoCorredor=${codigo}`)
@@ -23,7 +16,7 @@ export default function Corredores(props) {
                 setParadas(response.data);
             })
             .catch(function(error){
-                //erro
+                alert(error.message)
             })
     }
 

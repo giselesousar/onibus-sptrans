@@ -8,7 +8,7 @@ import PrevisaoChegada from './components/PrevisaoChegada';
 export default function Mapa(props) {
 
     return (
-        <Container style={{ marginTop: 30, marginBottom: 30 }}>
+        <Container style={{ marginTop: 50 }}>
                     <Row style={{
                         display: "flex",
                         justifyContent: "center"
@@ -20,8 +20,8 @@ export default function Mapa(props) {
                         width: "100%"
                     }}>
                         <Col md={12} xs={12} style={{
-                            justifyContent: "center",
-                            marginTop: 20
+                            alignItems: "center",
+                            marginTop: 5
                         }}>
         <Tab.Container id="list-group-tabs-example" defaultActiveKey="#onibus">
             <Row>

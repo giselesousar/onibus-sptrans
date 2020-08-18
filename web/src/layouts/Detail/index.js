@@ -15,6 +15,7 @@ export default function Detail(props) {
     }
 
     return (
+    <>
         <Container style={{
             display: "flex",
             justifyContent: "center"
@@ -40,5 +41,7 @@ export default function Detail(props) {
                 {children}
             </Card>
         </Container>
+        <Footer/>
+        </>
     )
 }
