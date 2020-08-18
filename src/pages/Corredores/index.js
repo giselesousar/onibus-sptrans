@@ -38,6 +38,9 @@ export default function Corredores(props) {
                         <Card.Header>
                             <Form inline >
                                 <FormControl
+                                style={{
+                                    width:"100%"
+                                }}
                                     type="text"
                                     placeholder="Filtrar"
                                     className="mr-sm-2"

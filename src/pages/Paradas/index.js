@@ -12,7 +12,7 @@ export default function Paradas(props) {
     function onChange(e) {
         setValue(e.target.value);
         if (e.target.value.length > 0) {
-            setFiltro(busca.filter(item => { return item.np.toLowerCase().match(e.target.value.toLowerCase()) || item.ed.toLowerCase().match(e.target.value.toLowerCase()) }))
+            setFiltro(busca.filter(item => { return item.np.toLowerCase().match(e.target.value.toLowerCase()) || item.ed.toLowerCase().match(e.target.value.toLowerCase()) || String(item.cp).match(e.target.value) }))
         } else {
             setFiltro(busca);
         }
@@ -32,6 +32,9 @@ export default function Paradas(props) {
                         <Card.Header>
                             <Form inline >
                                 <FormControl
+                                style={{
+                                    width:"100%"
+                                }}
                                     type="text"
                                     placeholder="Filtrar"
                                     className="mr-sm-2"
@@ -47,7 +50,8 @@ export default function Paradas(props) {
                                     return (
                                           <ListGroup.Item key={item.cp}>
                                               <strong> {item.np} </strong><br/>
-                                               {item.ed} 
+                                              <strong>Endereço: </strong> {item.ed}<br/>
+                                               <strong>Código: </strong> {item.cp}
                                           </ListGroup.Item>
                                     )
 

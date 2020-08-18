@@ -17,7 +17,8 @@ export default function Mapa(props) {
                     </Row>
                     <Row style={{
                         marginTop: 30,
-                        width: "100%"
+                        display: "flex",
+                        justifyContent: "center"
                     }}>
                         <Col md={12} xs={12} style={{
                             alignItems: "center",

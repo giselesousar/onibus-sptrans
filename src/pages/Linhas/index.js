@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Detail from '../../layouts/Detail';
-import { Container, Card, Accordion, ListGroup, Form, FormControl, Button } from 'react-bootstrap';
+import { Container, Card, Accordion, ListGroup, Form, FormControl, Button, Spinner } from 'react-bootstrap';
 import { FaArrowRight, FaArrowDown } from 'react-icons/fa'
 import api from '../../services/api';
 
@@ -46,6 +46,9 @@ export default function Linhas(props) {
             <Card.Header>
                 <Form inline >
                     <FormControl
+                        style={{
+                            width:"100%"
+                        }}
                         type="text"
                         placeholder="Filtrar"
                         className="mr-sm-2"
@@ -92,18 +95,28 @@ export default function Linhas(props) {
                                     </Accordion.Toggle>
                                 <Accordion.Collapse eventKey={item.cl}>
                                     <ListGroup>
-                                        {paradas.length > 0 &&
+                                        <Card.Header>
+                                            {loading ? <Spinner variant="success" animation="border"/> : "Pontos de parada atendidos"}
+                                        </Card.Header>
+                                        {paradas.length > 0 ?
                                             <Card.Body>
                                                 {paradas.map(parada => {
                                                     return (
                                                         <ListGroup.Item>
                                                              <strong> {parada.np} </strong><br/>
-                                                                {parada.ed} 
+                                                            <strong>Endereço: </strong> {parada.ed}<br/>
+                                                            <strong>Código: </strong> {parada.cp}
                                                         </ListGroup.Item>
                                                     )
                                                 })}
                                             </Card.Body>
+                                                :
+                                                <ListGroup.Item>
+                                                          Nenhum ponto encontrado!
+                                                </ListGroup.Item>
                                         }
+                                        
+
                                     </ListGroup>
                                 </Accordion.Collapse>
                             </Card>
