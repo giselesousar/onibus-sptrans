@@ -1,6 +1,7 @@
 import React, {useRef, useEffect} from 'react';
 import { Map, TileLayer, Marker, Popup  } from 'react-leaflet';
 import {pointerBusIcon, busIcon} from './components/Icons';
+import {FaWheelchair} from 'react-icons/fa'
 
 export default function MapComponent(props) {
     const { resultados } = props;
@@ -25,9 +26,10 @@ export default function MapComponent(props) {
             {resultados &&
             <>
             <Marker position={[resultados.p.py, resultados.p.px]} icon={pointerBusIcon}>
-                <Popup>
+                {resultados.p.np !== "" && <Popup>
                     {resultados.p.np}
-                </Popup>
+                </Popup> }
+                
             </Marker>
             {resultados.p.l && 
             resultados.p.l.map(linha => {
@@ -43,7 +45,12 @@ export default function MapComponent(props) {
                                     }<br/>
                                     Origem: {linha.lt1}<br/>
                                     Destino: {linha.lt0}<br/>
-                                    Previsão de chegada: {veiculo.t}
+                                    Previsão de chegada: {veiculo.t}<br/>
+                                    {veiculo.a ?
+                                    <FaWheelchair size={10} color="blue"/>
+                                    :
+                                    <p>Não acessível para pessoas com deficiência</p>
+                            }
                                 </Popup>
                             </Marker>
                         )

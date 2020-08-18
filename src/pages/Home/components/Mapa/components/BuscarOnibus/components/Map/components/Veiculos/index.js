@@ -11,9 +11,17 @@ export default function Veiculos(props){
         <>{veiculos.map(veiculo => {
                 return (
                     <Marker key={veiculo.p} position={[veiculo.py, veiculo.px]} icon={busIcon}>
+                        
                         <Popup>
-                            {veiculo.a && <FaWheelchair color="blue"/>}
+                            {veiculo.a ?
+                            <p style={{textAlign: "center"}}>
+                             <FaWheelchair size={15} color="blue"/>
+                             </p>
+                             :
+                             <p>Não acessível para pessoas com deficiência.</p>
+                            }
                         </Popup>
+                        
                     </Marker>
                 )
         })}

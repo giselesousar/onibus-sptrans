@@ -7,6 +7,7 @@ export default function Corredores(props) {
 
     const codigo = props.location.state.codigo;
 
+    const [filtro, setFiltro] = useState([]);
     const [paradas, setParadas] = useState([]);
     const [value, setValue] = useState('');
 
@@ -14,10 +15,20 @@ export default function Corredores(props) {
         api.get(`Parada/BuscarParadasPorCorredor?codigoCorredor=${codigo}`)
             .then(response => {
                 setParadas(response.data);
+                setFiltro(response.data);
             })
             .catch(function(error){
                 alert(error.message)
             })
+    }
+
+    function onChange(e){
+        setValue(e.target.value);
+        if (e.target.value.length > 0) {
+            setFiltro(paradas.filter(item => { return item.np.match(e.target.value) || item.ed.toLowerCase().match(e.target.value.toLowerCase()) || String(item.cp).match(e.target.value) }))
+        } else {
+            setFiltro(paradas);
+        }
     }
 
     useEffect(() => {
@@ -45,15 +56,17 @@ export default function Corredores(props) {
                                     placeholder="Filtrar"
                                     className="mr-sm-2"
                                     value={value}
+                                    onChange={onChange}
                                 />
                             </Form>
                         </Card.Header>
                     <ListGroup>
-                        {paradas.map(parada => {
+                        {filtro.map(parada => {
                             return(
                                 <ListGroup.Item key={parada.cp}>
                                     <strong> {parada.np} </strong><br/>
-                                        {parada.ed}
+                                    <strong>Endereço: </strong> {parada.ed}<br/>
+                                    <strong>Código: </strong> {parada.cp}
                                 </ListGroup.Item>
                             )
                         })}

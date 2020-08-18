@@ -96,7 +96,10 @@ export default function Linhas(props) {
                                 <Accordion.Collapse eventKey={item.cl}>
                                     <ListGroup>
                                         <Card.Header>
-                                            {loading ? <Spinner variant="success" animation="border"/> : "Pontos de parada atendidos"}
+                                            {loading ? <Container style={{
+                                                display: "flex",
+                                                justifyContent: "center"
+                                            }}> <Spinner variant="success" animation="border"/> </Container>: "Pontos de parada atendidos"}
                                         </Card.Header>
                                         {paradas.length > 0 ?
                                             <Card.Body>

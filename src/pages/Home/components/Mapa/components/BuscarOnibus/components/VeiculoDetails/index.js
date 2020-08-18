@@ -9,7 +9,7 @@ export default function VeiculoDetails(props) {
     useEffect(() => {
          api.get("Posicao")
                .then(response => {
-                    if(response.data.l){
+                    if(response.data){
                          response.data.l.forEach(item => {
                               if(item.cl == linha){
                                    setInfos(item);
