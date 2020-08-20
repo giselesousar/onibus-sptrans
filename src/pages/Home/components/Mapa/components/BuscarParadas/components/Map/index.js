@@ -1,9 +1,12 @@
-import React, {useRef, useEffect} from 'react';
+import React, {useRef, useEffect, useContext} from 'react';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import Paradas from './components/Paradas';
+import PositionContext from '../../../../../../../../Providers/PositionProvider';
 
 export default function MapComponent(props) {
-    const { paradas, localizacao, mostrarLocalizacao } = props;
+    const { paradas, mostrarLocalizacao } = props;
+
+    const { localizacao } = useContext(PositionContext);
 
     const mapRef = useRef();
     const didMountRef = useRef(false) 

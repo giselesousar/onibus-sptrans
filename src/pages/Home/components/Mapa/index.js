@@ -1,16 +1,16 @@
-import React, {useState} from 'react';
+import React, {useContext} from 'react';
 import { Row, Col, Tab, ListGroup, Container, Button } from 'react-bootstrap';
 
 import BuscarOnibus from './components/BuscarOnibus';
 import BuscarParadas from './components/BuscarParadas';
 import PrevisaoChegada from './components/PrevisaoChegada';
 
+import PositionContext from '../../../../Providers/PositionProvider';
+
+
 export default function Mapa(props) {
     
-    const [localizacao, setLocalizacao] = useState({
-        marker: false,
-        position: []
-    });
+    const { localizacao, setLocalizacao } = useContext(PositionContext);
 
     function handleLocalizacao(){
         if (!navigator.geolocation){

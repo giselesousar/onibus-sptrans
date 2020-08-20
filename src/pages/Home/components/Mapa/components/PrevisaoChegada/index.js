@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useContext} from 'react';
 import {Col, Row, Card, Button, Form} from 'react-bootstrap';
 import MapComponent from './components/Map';
 import Search from './components/Search';
@@ -6,10 +6,11 @@ import TooltipComponent from '../../../components/Tooltip';
 import Details from './components/Details';
 import { FaTrash } from 'react-icons/fa';
 import Contador from './components/Contador';
+import PositionContext from '../../../../../../Providers/PositionProvider';
 
 export default function PrevisaoChegada(props){
 
-    const {localizacao} = props;
+    const {localizacao} = useContext(PositionContext);
     const [mostrarLocalizacao, setMostrarLocalizacao] = useState(true);
 
     const [resultados, setResultados] = useState(null);

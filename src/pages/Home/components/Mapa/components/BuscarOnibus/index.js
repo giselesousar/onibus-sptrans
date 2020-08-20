@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {Col, Row, Card, Button, Form} from 'react-bootstrap';
 import { FaTrash } from 'react-icons/fa';
 
@@ -9,10 +9,12 @@ import VeiculoDetails from './components/VeiculoDetails';
 import Contador from './components/Contador';
 import MapComponent from './components/Map';
 import api from '../../../../../../services/api'
+import PositionContext from '../../../../../../Providers/PositionProvider';
+
 
 export default function BuscarOnibus(props) {
 
-    const { localizacao }= props;
+    const { localizacao }= useContext(PositionContext);
 
     const [veiculoBuscado, setVeiculoBuscado] = useState({
         veiculos: null,

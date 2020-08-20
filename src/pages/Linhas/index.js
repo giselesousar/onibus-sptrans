@@ -34,7 +34,7 @@ export default function Linhas(props) {
     function onChange(e) {
         setValue(e.target.value);
         if (e.target.value.length > 0) {
-            setFiltro(busca.filter(item => { return item.lt.match(e.target.value) || item.tp.toLowerCase().match(e.target.value.toLowerCase()) || item.ts.toLowerCase().match(e.target.value.toLowerCase()) }))
+            setFiltro(busca.filter(item => { return item.lt.match(e.target.value) || item.tp.toLowerCase().match(e.target.value.toLowerCase()) || item.ts.toLowerCase().match(e.target.value.toLowerCase()) || String(item.cl).match(e.target.value) }))
         } else {
             setFiltro(busca);
         }
