@@ -28,7 +28,14 @@ export default function Mapa(props) {
                 })
             }
             
-        })
+        }, () => {
+            alert("Não foi possível obter sua localização atual!");
+                setLocalizacao({
+                    marker: false,
+                    position: [-23.5489, -46.6388]
+                })
+        }, {timeout:10000})
+        
     }
 
     return (
@@ -91,7 +98,7 @@ export default function Mapa(props) {
             justifyContent: "center",
             alignItems: "center"
         }}>
-            <div style={{display: "inline", textAlign:"center", fontSize: "30px"}}>
+            <div style={{display: "inline", textAlign:"center", fontSize: "20px"}}>
             <Button onClick={handleLocalizacao} size="lg" variant="success">Usar minha localização atual</Button> 
             <p>ou</p>
             <p onClick={() => setLocalizacao({
