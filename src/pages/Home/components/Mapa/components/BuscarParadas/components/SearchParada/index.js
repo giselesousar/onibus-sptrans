@@ -4,7 +4,7 @@ import {FaPlus, FaMinus} from 'react-icons/fa'
 import api from '../../../../../../../../services/api'
 
 export default function SearchParada(props){
-    const { setParadas, veiculo, mostrarParadas, setMostrarParadas} = props;
+    const { setParadas, setBusca} = props;
     const [value, setValue] = useState('');
     const [selectValue, setSelectValue] = useState('linha');
 
@@ -13,16 +13,28 @@ export default function SearchParada(props){
     function onSubmit(e){
         e.preventDefault();
         if(exibirFiltros){
+        let rota = "";
 
-        api.get(
-            selectValue == "linha" ?
-            `Parada/BuscarParadasPorLinha?codigoLinha=${value}`
-            :
-            `Parada/BuscarParadasPorCorredor?codigoCorredor=${value}`
-        ).then(response => {
+        if(selectValue === "linha"){
+            rota = `Parada/BuscarParadasPorLinha?codigoLinha=${value}`;
+            setBusca({
+                codigo: 2,
+                input: value
+            })
+        }else{
+            rota = `Parada/BuscarParadasPorCorredor?codigoCorredor=${value}`
+            setBusca({
+                codigo: 3,
+                input: value
+            })
+        }
+
+        api.get(rota).then(response => {
             if(response.data.length > 0 ){
                 setParadas(response.data);
+
             }else{
+                setParadas([]);
                 alert("Nenhuma informação encontrada!");
                 return;
             }
@@ -35,7 +47,12 @@ export default function SearchParada(props){
             .then(response => {
                 if(response.data.length > 0 ){
                     setParadas(response.data);
+                    setBusca({
+                        codigo: 1,
+                        input: value
+                    })
                 }else{
+                    setParadas([]);
                     alert("Nenhuma informação encontrada!");
                     return;
                 }
@@ -52,7 +69,7 @@ export default function SearchParada(props){
             <Form inline onSubmit={onSubmit}>
                 <FormControl 
                     type="text" 
-                    placeholder="Nome ou endereço" 
+                    placeholder="Buscar parada" 
                     className="mr-sm-2" 
                     value={value}
                     onChange={(e) => {setValue(e.target.value)}}

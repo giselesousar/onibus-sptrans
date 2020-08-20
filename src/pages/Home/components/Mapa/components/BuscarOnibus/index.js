@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Col, Row, Card, Button} from 'react-bootstrap';
+import {Col, Row, Card, Button, Form} from 'react-bootstrap';
 import { FaTrash } from 'react-icons/fa';
 
 
@@ -12,12 +12,15 @@ import api from '../../../../../../services/api'
 
 export default function BuscarOnibus(props) {
 
-    const {} = props;
+    const { localizacao }= props;
 
     const [veiculoBuscado, setVeiculoBuscado] = useState({
         veiculos: null,
         linha: null
     });
+
+    const [mostrarLocalizacao, setMostrarLocalizacao] = useState(true);
+
     const [atualizar, setAtualizar] = useState(false);
 
     function atualizarDados() {
@@ -85,7 +88,17 @@ export default function BuscarOnibus(props) {
             }}>
                 <MapComponent
                     veiculos={veiculoBuscado.veiculos}
+                    localizacao={localizacao}
+                    mostrarLocalizacao={mostrarLocalizacao}
                 />
+                {localizacao.marker && 
+                <Form>
+                    <Form.Group>
+                        <Form.Check onClick={() => setMostrarLocalizacao(!mostrarLocalizacao)} type="checkbox" label="Ocultar minha localização" />
+                    </Form.Group>
+
+                    </Form>
+                }
             </Row>
         </Col>
     )

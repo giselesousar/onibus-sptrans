@@ -33,7 +33,7 @@ export default function SearchVeiculo(props) {
             <Form inline onSubmit={onSubmit}>
                 <FormControl 
                     type="text" 
-                    placeholder="Buscar veículos" 
+                    placeholder="Buscar ônibus" 
                     className="mr-sm-2" 
                     value={value}
                     onChange={(e) => {setValue(e.target.value)}}

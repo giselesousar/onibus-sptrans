@@ -6,7 +6,7 @@ import api from './services/api';
 
 function App() {
 
-  const [estaAutenticado, setEstaAutenticado] = useState(false);
+  const [estaAutenticado, setEstaAutenticado] = useState(null);
 
   useEffect(() => {
     api.post(`Login/Autenticar?token=${process.env.TOKEN}`)
@@ -17,7 +17,7 @@ function App() {
 
   return (
     <>
-      {estaAutenticado && <Routes/>}
+      {estaAutenticado === false ? <h1>Problemas na autentificação. Recarregue a página!</h1> : <Routes/> }
     </>
   );
 }

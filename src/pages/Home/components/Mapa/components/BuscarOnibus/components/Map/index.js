@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from 'react';
-import { Map, TileLayer } from 'react-leaflet';
+import { Map, TileLayer, Popup, Marker } from 'react-leaflet';
 import Veiculos from './components/Veiculos';
 
 export default function MapComponent(props) {
-    const { veiculos } = props;
+    const { veiculos, localizacao, mostrarLocalizacao } = props;
 
     const mapRef = useRef();
     const didMountRef = useRef(false) 
@@ -17,11 +17,17 @@ export default function MapComponent(props) {
     })
 
     return (
-        <Map center={[-23.692865, -46.77835]} zoom={12} ref={mapRef} >
+        <Map center={localizacao.position} zoom={12} ref={mapRef} >
             <TileLayer
                 attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
+            {localizacao.marker && mostrarLocalizacao && 
+                <Marker position={localizacao.position}>
+                    <Popup>
+                        Você está aqui!
+                    </Popup>
+                </Marker>}
             {veiculos && <Veiculos veiculos={veiculos.vs} />}
         </Map>
     )

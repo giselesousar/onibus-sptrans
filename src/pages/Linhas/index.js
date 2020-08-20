@@ -80,6 +80,7 @@ export default function Linhas(props) {
                                         justifyContent: "space-between"
                                     }}>
                                         <div>
+                                        <strong>Código: </strong>{item.cl}<br/>
                                         {item.lt} - {item.tl} <br />
                                         {item.sl === 1 ?
                                             <p>

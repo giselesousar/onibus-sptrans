@@ -1,11 +1,35 @@
-import React from 'react';
-import { Row, Col, Tab, ListGroup, Container } from 'react-bootstrap';
+import React, {useState} from 'react';
+import { Row, Col, Tab, ListGroup, Container, Button } from 'react-bootstrap';
 
 import BuscarOnibus from './components/BuscarOnibus';
 import BuscarParadas from './components/BuscarParadas';
 import PrevisaoChegada from './components/PrevisaoChegada';
 
 export default function Mapa(props) {
+    
+    const [localizacao, setLocalizacao] = useState({
+        marker: false,
+        position: []
+    });
+
+    function handleLocalizacao(){
+        navigator.geolocation.getCurrentPosition(position => {
+            const { latitude, longitude } = position.coords;
+            if(latitude && longitude){
+                setLocalizacao({
+                    marker: true,
+                    position: [latitude, longitude]
+                });
+            }else{
+                alert("Não foi possível obter sua localização atual!");
+                setLocalizacao({
+                    marker: false,
+                    position: [-23.5489, -46.6388]
+                })
+            }
+            
+        })
+    }
 
     return (
         <Container style={{ marginTop: 50 }}>
@@ -24,6 +48,7 @@ export default function Mapa(props) {
                             alignItems: "center",
                             marginTop: 5
                         }}>
+                            {localizacao.position.length > 0 ? 
         <Tab.Container id="list-group-tabs-example" defaultActiveKey="#onibus">
             <Row>
                 <Col sm={4}>
@@ -42,18 +67,40 @@ export default function Mapa(props) {
                 <Col sm={8}>
                     <Tab.Content>
                         <Tab.Pane eventKey="#onibus">
-                            <BuscarOnibus/>
+                            <BuscarOnibus
+                                localizacao={localizacao}
+                            />
                         </Tab.Pane>
                         <Tab.Pane eventKey="#paradas">
-                            <BuscarParadas/>
+                            <BuscarParadas
+                                localizacao={localizacao}
+                            />
                         </Tab.Pane>
                         <Tab.Pane eventKey="#previsao">
-                            <PrevisaoChegada/>
+                            <PrevisaoChegada 
+                                localizacao={localizacao}
+                            />
                         </Tab.Pane>
                     </Tab.Content>
                 </Col>
             </Row>
         </Tab.Container>
+        : <Container style={{
+            minHeight: "70vh",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center"
+        }}>
+            <div style={{display: "inline", textAlign:"center", fontSize: "30px"}}>
+            <Button onClick={handleLocalizacao} size="lg" variant="success">Usar minha localização atual</Button> 
+            <p>ou</p>
+            <p onClick={() => setLocalizacao({
+                marker: false,
+                position: [-23.5489, -46.6388]
+            })} style={{cursor: "pointer"}}>Não informar localização</p>
+            </div>
+        </Container>
+        }
         </Col>
     </Row>
     </Container>

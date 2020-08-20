@@ -4,7 +4,7 @@ import {pointerBusIcon, busIcon} from './components/Icons';
 import {FaWheelchair} from 'react-icons/fa'
 
 export default function MapComponent(props) {
-    const { resultados } = props;
+    const { resultados, localizacao, mostrarLocalizacao } = props;
 
     const mapRef = useRef();
     const didMountRef = useRef(false) 
@@ -18,11 +18,17 @@ export default function MapComponent(props) {
     })
 
     return (
-        <Map center={[-23.692865, -46.77835]} zoom={12} ref={mapRef} >
+        <Map center={localizacao.position} zoom={12} ref={mapRef} >
             <TileLayer
                 attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
+            {localizacao.marker && mostrarLocalizacao && 
+                <Marker position={localizacao.position}>
+                    <Popup>
+                        Você está aqui!
+                    </Popup>
+                </Marker>}
             {resultados &&
             <>
             <Marker position={[resultados.p.py, resultados.p.px]} icon={pointerBusIcon}>

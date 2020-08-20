@@ -61,6 +61,11 @@ export default function Corredores(props) {
                             </Form>
                         </Card.Header>
                     <ListGroup>
+                        <div style={{
+                            textAlign: "center"
+                        }}>
+                            <h5>Código do corredor: {codigo}</h5>
+                        </div>
                         {filtro.map(parada => {
                             return(
                                 <ListGroup.Item key={parada.cp}>
