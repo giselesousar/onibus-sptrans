@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Marker, Popup } from 'react-leaflet';
 import {busIcon} from '../Icons';
 import { FaWheelchair } from 'react-icons/fa'

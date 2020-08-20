@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Marker, Popup } from 'react-leaflet';
 import {pointerBusIcon} from '../Icons';
-import { FaWheelchair } from 'react-icons/fa'
 
 
 export default function Paradas(props){

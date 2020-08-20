@@ -18,7 +18,7 @@ export default function Documentacao(){
             <Container>
                 <h3>Introdução</h3>
                 <p> 
-                    Esta aplicação foi desenvolvida para o desafio técnico do programa de estágio Aiko. O objetivo desta aplicação é prover para o usuário informações sobre os ônibus da cidade de São Paulo, como a posição dos veículos, paradas e outros. Para isso, as informações mostradas provêm da <a href="http://www.sptrans.com.br/desenvolvedores/api-do-olho-vivo-guia-de-referencia/">API Olho Vivo</a>.
+                    Esta aplicação foi desenvolvida para o desafio técnico do programa de estágio Aiko. O objetivo desta aplicação é prover para o usuário informações sobre os ônibus da cidade de São Paulo, como a posição dos veículos, paradas e outros. Para isso, as informações mostradas são obtidas a partir da <a href="http://www.sptrans.com.br/desenvolvedores/api-do-olho-vivo-guia-de-referencia/">API Olho Vivo</a>.
                 </p>
                 <h3>Funcionalidades</h3>
                     <p>As funcionalidades da aplicação estão divididas em dois tópicos para melhor compreensão.</p>
@@ -90,11 +90,14 @@ export default function Documentacao(){
                         }} fluid src={comp2}/>
                 <h4>Layouts</h4>
                 <p>
-                    A layout "Main" é usada apenas em "Home" e acrescenda o "Footer" a esse componente. Já a layout "Detail" é usada nas demais páginas e é composta por uma estrutura com um Card e o Footer. O Card contém um botão de voltar à página anterior, um título e o "children" dos componentes.
+                    A layout "Main" é usada apenas em "Home" e acrescenda o "Footer" a esse componente. Já a layout "Detail" é usada nas demais páginas e é composta por uma estrutura com um Card e o Footer. O Card contém um botão de voltar à página anterior, um título e a informação vinda de "props.children".
                 </p>
                 <h4>Services</h4>
                 <p>Dentro desse diretório existe um arquivo "api.js" que exporta uma instancia de "axios" com uma configuração de URL básica, correspondente à API. </p>
-                
+                <h4>Providers</h4>
+                <p>
+                    Na pasta "Providers", há um componete que exporta o contexto usado para deixar a opção de localização e as coordenadas escolhidas pelo usuário no topo da árvore de componentes. É usado para que todos os componentes que renderizam um mapa tenham acesso à essa informação.
+                </p>
                 <h3>Tecnologias</h3>
                 <p>Framework utilizado: <a href="https://reactjs.org/">React</a>.</p>
                 <strong>Bibliotecas: </strong>
