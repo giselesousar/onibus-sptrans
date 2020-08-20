@@ -13,6 +13,14 @@ export default function Mapa(props) {
     });
 
     function handleLocalizacao(){
+        if (!navigator.geolocation){
+            alert("Não foi possível obter sua localização atual!");
+                setLocalizacao({
+                    marker: false,
+                    position: [-23.5489, -46.6388]
+                })
+            return;
+          }
         navigator.geolocation.getCurrentPosition(position => {
             const { latitude, longitude } = position.coords;
             if(latitude && longitude){
